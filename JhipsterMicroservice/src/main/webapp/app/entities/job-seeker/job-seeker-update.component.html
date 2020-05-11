@@ -1,0 +1,92 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-job-seeker-heading">Create or edit a Job Seeker</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!jobSeeker.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="jobSeeker.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                        [(ngModel)]="jobSeeker.name" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_age">Age</label>
+                    <input type="number" class="form-control" name="age" id="field_age"
+                        [(ngModel)]="jobSeeker.age" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_gender">Gender</label>
+                    <select class="form-control" name="gender" [(ngModel)]="jobSeeker.gender" id="field_gender" >
+                        <option value="MALE">MALE</option>
+                        <option value="FEMALE">FEMALE</option>
+                        <option value="OTHER">OTHER</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_experience">Experience</label>
+                    <input type="number" class="form-control" name="experience" id="field_experience"
+                        [(ngModel)]="jobSeeker.experience" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_ctc">Ctc</label>
+                    <input type="number" class="form-control" name="ctc" id="field_ctc"
+                        [(ngModel)]="jobSeeker.ctc" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_expCtc">Exp Ctc</label>
+                    <input type="number" class="form-control" name="expCtc" id="field_expCtc"
+                        [(ngModel)]="jobSeeker.expCtc" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_photo">Photo</label>
+                    <div>
+                        <img [src]="'data:' + jobSeeker.photoContentType + ';base64,' + jobSeeker.photo" style="max-height: 100px;" *ngIf="jobSeeker.photo" alt="jobSeeker image"/>
+                        <div *ngIf="jobSeeker.photo" class="form-text text-danger clearfix">
+                            <span class="pull-left">{{jobSeeker.photoContentType}}, {{byteSize(jobSeeker.photo)}}</span>
+                            <button type="button" (click)="clearInputImage('photo', 'photoContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_photo" (change)="setFileData($event, jobSeeker, 'photo', true)" accept="image/*"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="photo" id="field_photo"
+                        [(ngModel)]="jobSeeker.photo" />
+                    <input type="hidden" class="form-control" name="photoContentType" id="field_photoContentType"
+                        [(ngModel)]="jobSeeker.photoContentType" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_resume">Resume</label>
+                    <div>
+                        <div *ngIf="jobSeeker.resume" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(jobSeeker.resumeContentType, jobSeeker.resume)">open</a><br>
+                            <span class="pull-left">{{jobSeeker.resumeContentType}}, {{byteSize(jobSeeker.resume)}}</span>
+                            <button type="button" (click)="jobSeeker.resume=null;jobSeeker.resumeContentType=null;"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_resume" (change)="setFileData($event, jobSeeker, 'resume', false)"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="resume" id="field_resume"
+                        [(ngModel)]="jobSeeker.resume" />
+                    <input type="hidden" class="form-control" name="resumeContentType" id="field_resumeContentType"
+                        [(ngModel)]="jobSeeker.resumeContentType" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

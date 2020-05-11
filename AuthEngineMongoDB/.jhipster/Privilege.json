@@ -1,0 +1,34 @@
+{
+    "name": "Privilege",
+    "fields": [
+        {
+            "fieldName": "permission",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "role",
+            "otherEntityName": "role",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "privilege"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "feature",
+            "otherEntityName": "feature",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "privilege"
+        }
+    ],
+    "changelogDate": "20190206092024",
+    "entityTableName": "privilege",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

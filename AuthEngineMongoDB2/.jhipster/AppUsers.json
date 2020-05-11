@@ -1,0 +1,27 @@
+{
+    "name": "AppUsers",
+    "fields": [
+        {
+            "fieldName": "usersName",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "role",
+            "otherEntityName": "role",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "appUsers"
+        }
+    ],
+    "changelogDate": "20190206111537",
+    "entityTableName": "app_users",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

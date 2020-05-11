@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="feature">
+            <h2><span>Feature</span> {{feature.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Description</span></dt>
+                <dd>
+                    <span>{{feature.description}}</span>
+                </dd>
+                <dt><span>Type</span></dt>
+                <dd>
+                    <span>{{feature.type}}</span>
+                </dd>
+                <dt><span>Is Critical</span></dt>
+                <dd>
+                    <span>{{feature.isCritical}}</span>
+                </dd>
+                <dt><span>Privilege</span></dt>
+                <dd>
+                    <span *ngFor="let privilege of feature.privileges; let last = last">
+                        <a [routerLink]="['/privilege', privilege?.id, 'view' ]">{{privilege.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/feature', feature.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

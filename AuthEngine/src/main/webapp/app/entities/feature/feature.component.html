@@ -1,0 +1,64 @@
+<div>
+    <h2 id="page-heading">
+        <span>Features</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-feature" [routerLink]="['/feature/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Feature
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="features">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Description</span></th>
+            <th><span>Type</span></th>
+            <th><span>Is Critical</span></th>
+            <th><span>Privilege</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let feature of features ;trackBy: trackId">
+                <td><a [routerLink]="['/feature', feature.id, 'view' ]">{{feature.id}}</a></td>
+                <td>{{feature.description}}</td>
+                <td>{{feature.type}}</td>
+                <td>{{feature.isCritical}}</td>
+                <td>
+                    <span *ngFor="let privilege of feature.privileges; let last = last">
+                            <a class="form-control-static" [routerLink]="['../privilege', privilege?.id, 'view' ]">{{privilege.id}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/feature', feature.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/feature', feature.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'feature', { outlets: { popup: feature.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

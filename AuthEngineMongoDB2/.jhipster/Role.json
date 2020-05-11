@@ -1,0 +1,36 @@
+{
+    "name": "Role",
+    "fields": [
+        {
+            "fieldName": "roleName",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "privilege",
+            "otherEntityName": "privilege",
+            "otherEntityField": "permission",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "role(roleName)"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "role",
+            "relationshipName": "appUsers",
+            "otherEntityName": "appUsers",
+            "otherEntityField": "usersName",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190206111536",
+    "entityTableName": "role",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

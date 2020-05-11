@@ -1,0 +1,23 @@
+entity Role{
+    roleName String 
+}
+entity AppUsers{
+    usersName String
+}
+entity Privilege{
+	permission Integer
+}
+entity Feature{
+    description String,
+    type String,
+    isCritical String
+}
+relationship OneToMany{
+	AppUsers{role} to Role{appUsers},
+}
+relationship ManyToMany{
+	 Feature{privilege} to Privilege{feature}
+}
+relationship OneToOne{
+	Role to Privilege
+}

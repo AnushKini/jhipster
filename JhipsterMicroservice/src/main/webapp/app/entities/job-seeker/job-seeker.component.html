@@ -1,0 +1,76 @@
+<div>
+    <h2 id="page-heading">
+        <span>Job Seekers</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-job-seeker" [routerLink]="['/job-seeker/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Job Seeker
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="jobSeekers">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="name"><span>Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="age"><span>Age</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="gender"><span>Gender</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="experience"><span>Experience</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="ctc"><span>Ctc</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="expCtc"><span>Exp Ctc</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="photo"><span>Photo</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="resume"><span>Resume</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let jobSeeker of jobSeekers ;trackBy: trackId">
+                <td><a [routerLink]="['/job-seeker', jobSeeker.id, 'view' ]">{{jobSeeker.id}}</a></td>
+                <td>{{jobSeeker.name}}</td>
+                <td>{{jobSeeker.age}}</td>
+                <td>{{jobSeeker.gender}}</td>
+                <td>{{jobSeeker.experience}}</td>
+                <td>{{jobSeeker.ctc}}</td>
+                <td>{{jobSeeker.expCtc}}</td>
+                <td>
+                    <a *ngIf="jobSeeker.photo" (click)="openFile(jobSeeker.photoContentType, jobSeeker.photo)">
+                        <img [src]="'data:' + jobSeeker.photoContentType + ';base64,' + jobSeeker.photo" style="max-height: 30px;" alt="jobSeeker image"/>
+                    </a>
+                    <span *ngIf="jobSeeker.photo">{{jobSeeker.photoContentType}}, {{byteSize(jobSeeker.photo)}}</span>
+                </td>
+                <td>
+                    <a *ngIf="jobSeeker.resume" (click)="openFile(jobSeeker.resumeContentType, jobSeeker.resume)">open</a>
+                    <span *ngIf="jobSeeker.resume">{{jobSeeker.resumeContentType}}, {{byteSize(jobSeeker.resume)}}</span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/job-seeker', jobSeeker.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/job-seeker', jobSeeker.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'job-seeker', { outlets: { popup: jobSeeker.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

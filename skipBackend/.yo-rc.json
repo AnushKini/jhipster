@@ -1,0 +1,22 @@
+{
+  "generator-jhipster": {
+    "jhipsterVersion": "5.8.1",
+    "applicationType": "monolith",
+    "baseName": "skipBackend",
+    "clientFramework": "angularX",
+    "useSass": false,
+    "clientPackageManager": "npm",
+    "authenticationType": "true",
+    "cacheProvider": "no",
+    "databaseType": "true",
+    "devDatabaseType": "true",
+    "prodDatabaseType": "true",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "skipServer": true
+  }
+}

@@ -1,0 +1,36 @@
+{
+    "name": "Feature",
+    "fields": [
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "isCritical",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "feature",
+            "relationshipName": "privilege",
+            "otherEntityName": "privilege",
+            "otherEntityField": "permission",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190208103125",
+    "entityTableName": "feature",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,35 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.mindtree"
+    },
+    "jhipsterVersion": "5.8.1",
+    "applicationType": "monolith",
+    "baseName": "AuthEngineMongoDB2",
+    "packageName": "com.mindtree",
+    "packageFolder": "com/mindtree",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "mongodb",
+    "devDatabaseType": "mongodb",
+    "prodDatabaseType": "mongodb",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "YmFmNzc0MmVlOThlOWZhZmFlZmQ2YzI0MmUyYjI3YTg5NDA3MTg0YjA3ZTczNDI2Yjc4MGY2MzhjODY4MDJkYTc0ZDMxMzMxZjE1MGQ0ZDk4YjJkNDY5ODgwYzFmMDk1NjNjYThiYWJjNjdmODU3NTJkZWIyZmM2OWEwNWRlNDY=",
+    "clientFramework": "angularX",
+    "useSass": false,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false
+  }
+}
